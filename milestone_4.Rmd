@@ -1,0 +1,63 @@
+---
+title: "Milestone 4"
+author: "Angela Fu"
+date: "2/28/2020"
+output: pdf_document
+bibliography: bibliography.bib
+link_citations: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(gt)
+library(stargazer)
+```
+
+## Repo Link
+
+[Link](https://github.com/angelafu7/milestone-4) to repo
+
+## Table
+
+```{r}
+
+# this randomly generates some fake data
+
+x <- rnorm(10, 50, 7)
+y <- rnorm(10, 30, 9)
+
+# this puts the data together into a dataframe so that it can be displayed via gt()
+
+fake_data <- data.frame(x,y) 
+table <- fake_data %>%
+  gt() %>%
+  tab_header("Fake Data") %>%
+  
+  # cols_label allows you to relabel data
+  
+  cols_label(
+    x = "Independent Variable",
+    y = "Dependent Variable"
+  )
+
+# prints the table
+
+table
+```
+
+## Regression Table
+
+```{r, results = "asis"}
+lm_obj <- lm(y~x, data = fake_data)
+stargazer(lm_obj, header = FALSE)
+```
+
+## Reference and Footnote
+
+This is an example reference. [@R-base] ^[And this is an example footnote.]
+
+## Bibliography
+
+```{r}
+```
+
